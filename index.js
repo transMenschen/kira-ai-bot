@@ -40,7 +40,18 @@ client.on("messageCreate", async message => {
     });
 
     const answer = response.choices[0].message.content;
-    message.reply(answer);
+    // Antwort von GPT holen
+    const answer = response.choices[0].message.content;
+    
+    // In 2000-Zeichen-Blöcke aufteilen
+    const chunks = answer.match(/[\s\S]{1,1999}/g);
+    
+    // Nachricht(en) senden
+    for (const chunk of chunks) {
+      await message.channel.send(chunk);
+    }
+
+    
   } catch (err) {
     console.error(err);
     message.reply("Es gab einen Fehler beim Antworten 😥");
