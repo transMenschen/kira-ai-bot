@@ -39,7 +39,6 @@ client.on("messageCreate", async message => {
       temperature: 0.7,
     });
 
-    const answer = response.choices[0].message.content;
     // Antwort von GPT holen
     const answer = response.choices[0].message.content;
     
